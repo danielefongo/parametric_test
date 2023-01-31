@@ -3,7 +3,11 @@ defmodule ParametricTestTest do
   require ParametricTest
   import ParametricTest
 
-  parametric_test "a test", {a, b} <- [{1, 2}, {3, 4}, {4, 4}] do
-    assert a + 1 == b
+  setup do
+    {:ok, %{c: 1}}
+  end
+
+  parametric_test "a test", {a, b} <- [{1, 2}, {3, 4}, {4, 4}], %{c: c} do
+    assert a + c == b
   end
 end
