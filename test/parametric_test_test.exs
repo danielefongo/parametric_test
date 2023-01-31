@@ -1,8 +1,9 @@
 defmodule ParametricTestTest do
   use ExUnit.Case
-  doctest ParametricTest
+  require ParametricTest
+  import ParametricTest
 
-  test "greets the world" do
-    assert ParametricTest.hello() == :world
+  parametric_test "a test", {a, b} <- [{1, 2}, {3, 4}, {4, 4}] do
+    assert a + 1 == b
   end
 end
